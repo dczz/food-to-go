@@ -1,12 +1,24 @@
 package com.dczz.ftg.pending;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import java.io.Serializable;
 
-@EqualsAndHashCode
-@Data
-public class Address {
+import javax.persistence.Embeddable;
 
-  private String desc;
+@Embeddable
+public class Address implements Serializable {
 
+  private String zip;
+
+  private String city;
+
+  private String state;
+
+  public Address () {
+  }
+
+  public Address (String zip, String city, String state) {
+    this.zip = zip;
+    this.city = city;
+    this.state = state;
+  }
 }

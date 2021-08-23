@@ -8,6 +8,7 @@ class FoodToGoApplicationTests {
 
 	@Test
 	void contextLoads() {
+	  //application context be initialize..
 	}
 
 }

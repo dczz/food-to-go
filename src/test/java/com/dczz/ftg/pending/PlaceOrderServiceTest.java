@@ -1,14 +1,10 @@
-package com.dczz.ftg;
+package com.dczz.ftg.pending;
 
 import java.util.Date;
 import java.util.Optional;
 
-import com.dczz.ftg.pending.Address;
-import com.dczz.ftg.pending.PendingOrder;
-import com.dczz.ftg.pending.PendingOrderRepository;
-import com.dczz.ftg.pending.PlaceOrderService;
-import com.dczz.ftg.pending.PlaceOrderServiceImpl;
-import com.dczz.ftg.pending.RestaurantRepository;
+import com.dczz.ftg.restaurant.RestaurantRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.mockito.ArgumentMatchers.any;
@@ -37,20 +33,19 @@ class PlaceOrderServiceTest {
     when(pendingOrderRepository.findById(any())).thenReturn(Optional.of(pendingOrder));
     placeOrderService = new PlaceOrderServiceImpl(pendingOrderRepository, restaurantRepository);
 
-    String pendingOrderId = null;
+    java.lang.String string = null;
     Address deliveryAddress = mockGoodAddress();
     Date deliveryTime = new Date();
     //由于这里只针对Service进行测试，所以这里只需要校验PendingOrder的updateDeliveryInfo被执行，这个测试就达到目的了
     //当placeOrderService.updateDeliveryInfo
-    placeOrderService.updateDeliveryInfo(pendingOrderId, deliveryAddress, deliveryTime);
+    final PlaceOrderServiceResult serviceResult = placeOrderService.updateDeliveryInfo(string, deliveryAddress, deliveryTime);
     //pendingOrder.updateDeliveryInfo(restaurantRepository, deliveryAddress, deliveryTime)会被调用1次
     verify(pendingOrder, times(1)).updateDeliveryInfo(restaurantRepository, deliveryAddress, deliveryTime);
+    Assertions.assertNotNull(serviceResult.getPendingOrder());
   }
 
   private Address mockGoodAddress () {
-    final Address address = new Address();
-    address.setDesc("xxxxx");
-    return address;
+    return new Address("010","beijing","123");
   }
 
 }

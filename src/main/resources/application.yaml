@@ -1,1 +1,10 @@
-
+spring:
+  datasource:
+    hikari:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: 123456aa
+      jdbc-url: jdbc:mysql://localhost:3306/ftg
+  jpa:
+    hibernate:
+      ddl-auto: update

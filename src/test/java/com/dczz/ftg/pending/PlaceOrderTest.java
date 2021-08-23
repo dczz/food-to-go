@@ -1,12 +1,10 @@
-package com.dczz.ftg;
+package com.dczz.ftg.pending;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 
-import com.dczz.ftg.pending.Address;
-import com.dczz.ftg.pending.PendingOrder;
-import com.dczz.ftg.pending.RestaurantRepository;
+import com.dczz.ftg.restaurant.RestaurantRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -62,9 +60,7 @@ class PlaceOrderTest {
   }
 
   private Address mockAddress () {
-    final Address address = new Address();
-    address.setDesc("xxxx");
-    return address;
+    return new Address("010","xxxx","123");
   }
 
 }
